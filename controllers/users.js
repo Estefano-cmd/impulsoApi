@@ -76,6 +76,9 @@ import userService from "../services/users.js";
  *               surname:
  *                 type: string
  *                 example: Doe
+ *               role_type:
+ *                 type: string
+ *                 example: oficina
  *     responses:
  *       201:
  *         description: User created successfully
@@ -109,7 +112,7 @@ export const createUser = async (req, res) => {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/users'
+ *                 $ref: '#/components/schemas/User'
  *       500:
  *         description: Internal server error
  */
