@@ -109,7 +109,7 @@ export const createUser = async (req, res) => {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/User'
+ *                 $ref: '#/components/schemas/users'
  *       500:
  *         description: Internal server error
  */
