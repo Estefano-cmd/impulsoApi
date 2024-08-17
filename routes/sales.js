@@ -12,7 +12,7 @@ const router = express.Router();
 router.post("/sale", createSale);
 router.get("/sale", getAllSales);
 router.get("/sale/:id", getSaleById);
-router.put("/sale/:id", updateSale);
+router.patch("/sale/:id", updateSale);
 router.delete("/sale/:id", deleteSale);
 
 export default router;

@@ -152,7 +152,7 @@ export const getSaleById = async (req, res) => {
 /**
  * @swagger
  * /sales/{id}:
- *   put:
+ *   patch:
  *     summary: Update sale by ID
  *     tags: [Sales]
  *     parameters:
