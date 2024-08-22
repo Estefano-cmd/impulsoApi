@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import pool from "../config/db.js"; // Asegúrate de configurar la conexión a la base de datos
+import pool from "../config/db.js";
 import dotenv from "dotenv";
 
 /**

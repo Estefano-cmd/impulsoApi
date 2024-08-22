@@ -20,7 +20,7 @@ import swaggerDocs from "./swagger.js";
 const app = express();
 app.use(express.json());
 app.use(cors());
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Register routes
 app.use("/users", usersRoutes);
@@ -36,7 +36,7 @@ app.use("/user-routes", userRoutesRoutes); */
 
 swaggerDocs(app);
 
-app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log(`App listening on port ${port}`);
   console.log(`Swagger UI available at http://localhost:${port}/api-docs`);
 });
