@@ -10,9 +10,9 @@ import saleDetailsRoutes from "./routes/saleDetails.js";
 import productsRoutes from "./routes/products.js";
 import customersRoutes from "./routes/customers.js";
 import authRoutes from "./routes/authRoutes.js";
+import routesRoutes from "./routes/routes.js";
 /* import rolesRoutes from "./routes/roles.js";
 import trucksRoutes from "./routes/trucks.js";
-import routesRoutes from "./routes/routes.js"; // for user routes
 import userRoutesRoutes from "./routes/userRoutes.js"; */
 
 import swaggerDocs from "./swagger.js";
@@ -29,9 +29,9 @@ app.use("/sale-details", saleDetailsRoutes);
 app.use("/products", productsRoutes);
 app.use("/customers", customersRoutes);
 app.use("/auth", authRoutes);
+app.use("/routes", routesRoutes);
 /* app.use("/roles", rolesRoutes);
 app.use("/trucks", trucksRoutes);
-app.use("/routes", routesRoutes);
 app.use("/user-routes", userRoutesRoutes); */
 
 swaggerDocs(app);

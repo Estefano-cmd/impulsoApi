@@ -37,10 +37,24 @@ const deleteSale = async (id) => {
   return result.rowCount > 0;
 };
 
+const getSalesByRoute = async (id_route) => {
+  const result = await pool.query(
+    `SELECT * 
+       FROM sales s JOIN customers c ON s.id_customer = c.id
+       JOIN uvs u ON c.id_uv = u.id
+       JOIN route_uvs ru ON ru.id_uv = u.id
+       JOIN route r ON r.id = ru.id_route
+       WHERE id_truck = $1`,
+    [id_route]
+  );
+  return result.rows;
+};
+
 export default {
   createSale,
   getAllSales,
   getSaleById,
   updateSale,
   deleteSale,
+  getSalesByRoute,
 };

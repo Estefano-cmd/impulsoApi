@@ -1,4 +1,5 @@
 import customerService from "../services/customers.js";
+import pool from "../config/db.js";
 
 /**
  * @swagger
@@ -297,6 +298,100 @@ export const deleteCustomer = async (req, res) => {
       res.status(200).json({ message: "Customer deleted" });
     } else {
       res.status(404).json({ message: "Customer not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+/**
+ * @swagger
+ * /customers/route/{id_route}:
+ *   get:
+ *     summary: Get customers by route
+ *     tags: [Customers]
+ *     parameters:
+ *       - in: path
+ *         name: id_route
+ *         required: true
+ *         description: Route ID
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: List of customers associated with the route
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     example: 1
+ *                   name:
+ *                     type: string
+ *                     example: "Alice"
+ *                   surname:
+ *                     type: string
+ *                     example: "Smith"
+ *                   phone:
+ *                     type: string
+ *                     example: "123456789"
+ *                   ci:
+ *                     type: string
+ *                     example: "987654321"
+ *                   business_type:
+ *                     type: string
+ *                     example: "Retail"
+ *                   address:
+ *                     type: string
+ *                     example: "123 Main St"
+ *                   coord_lat:
+ *                     type: number
+ *                     example: 37.7749
+ *                   coord_lng:
+ *                     type: number
+ *                     example: -122.4194
+ *                   province:
+ *                     type: boolean
+ *                     example: true
+ *                   nit:
+ *                     type: integer
+ *                     example: 12345678
+ *                   razon_social:
+ *                     type: string
+ *                     example: "Example Corp"
+ *                   id_uv:
+ *                     type: integer
+ *                     example: 10
+ *       404:
+ *         description: No customers found for this route
+ *       500:
+ *         description: Internal server error
+ */
+
+export const getCustomersByRoute = async (req, res) => {
+  const { id_route } = req.params;
+
+  try {
+    const result = await pool.query(
+      `SELECT c.id, c.name, c.surname, c.phone, c.ci, c.business_type, c.address, 
+              c.coord_lat, c.coord_lng, c.province, c.nit, c.razon_social, c.id_uv
+       FROM customers c
+       JOIN uvs u ON c.id_uv = u.id
+       JOIN route_uvs ru ON ru.id_uv = u.id
+       WHERE ru.id_route = $1`,
+      [id_route]
+    );
+
+    if (result.rows.length > 0) {
+      res.status(200).json(result.rows);
+    } else {
+      res
+        .status(404)
+        .json({ message: "No customers found for this route based on UV" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

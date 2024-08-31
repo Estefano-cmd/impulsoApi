@@ -249,3 +249,110 @@ export const deleteSale = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+/**
+ * @swagger
+ * /sales/{id_route}:
+ *   get:
+ *     summary: Get sales associated with a specific route
+ *     tags: [Sales]
+ *     parameters:
+ *       - in: path
+ *         name: id_route
+ *         required: true
+ *         description: The ID of the route to get sales for
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: List of sales associated with the specified route
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     description: The ID of the sale
+ *                   sale_date:
+ *                     type: string
+ *                     format: date-time
+ *                     description: The date and time when the sale was made
+ *                   state:
+ *                     type: string
+ *                     description: The state of the sale (e.g., completed, pending)
+ *                   total:
+ *                     type: number
+ *                     format: float
+ *                     description: The total amount of the sale
+ *                   id_customer:
+ *                     type: integer
+ *                     description: The ID of the customer who made the sale
+ *                   id_distributor:
+ *                     type: integer
+ *                     description: The ID of the distributor associated with the sale (optional)
+ *                   id_seller:
+ *                     type: string
+ *                     description: The username of the seller who made the sale
+ *                   id_truck:
+ *                     type: integer
+ *                     description: The ID of the truck used for the sale (optional)
+ *                   customer:
+ *                     type: object
+ *                     properties:
+ *                       name:
+ *                         type: string
+ *                         description: The name of the customer
+ *                       surname:
+ *                         type: string
+ *                         description: The surname of the customer
+ *                       phone:
+ *                         type: string
+ *                         description: The phone number of the customer
+ *                       ci:
+ *                         type: string
+ *                         description: The CI (identity card) of the customer
+ *                       business_type:
+ *                         type: string
+ *                         description: The type of business of the customer
+ *                       address:
+ *                         type: string
+ *                         description: The address of the customer
+ *                       coord_lat:
+ *                         type: number
+ *                         description: The latitude coordinate of the customer's address
+ *                       coord_lng:
+ *                         type: number
+ *                         description: The longitude coordinate of the customer's address
+ *                       province:
+ *                         type: boolean
+ *                         description: Indicates if the customer is from the province
+ *                       nit:
+ *                         type: integer
+ *                         description: The NIT (Tax Identification Number) of the customer
+ *                       razon_social:
+ *                         type: string
+ *                         description: The social reason of the customer
+ *                       uv:
+ *                         type: integer
+ *                         description: The UV associated with the customer
+ *       404:
+ *         description: No sales found for this route
+ *       500:
+ *         description: Internal server error
+ */
+
+export const getSalesByRoute = async (req, res) => {
+  try {
+    const sale = await saleService.getSalesByRoute(req.params.id_route);
+    if (sale) {
+      res.status(200).json(sale);
+    } else {
+      res.status(404).json({ message: "Sales not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

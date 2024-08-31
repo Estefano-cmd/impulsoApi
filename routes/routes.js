@@ -8,19 +8,21 @@ import {
   deleteRoute,
   assignRouteToUser,
   removeRouteFromUser,
-} from "../controllers/routes";
+  getRouteDetailFromUser,
+} from "../controllers/routes.js";
 
 const router = express.Router();
 
 // Route endpoints
-router.post("/routes", createRoute);
-router.get("/routes", getAllRoutes);
-router.get("/routes/:id", getRouteById);
-router.put("/routes/:id", updateRoute);
-router.delete("/routes/:id", deleteRoute);
+router.post("/", createRoute);
+router.get("/", getAllRoutes);
+router.get("/:id", getRouteById);
+router.put("/:id", updateRoute);
+router.delete("/:id", deleteRoute);
 
 // User route assignment endpoints
-router.post("/users/:id/routes", assignRouteToUser);
-router.delete("/users/:id/routes/:id_route", removeRouteFromUser);
+router.post("/:id/routes", assignRouteToUser);
+router.delete("/:id/routes/:id_route", removeRouteFromUser);
+router.get("/:id/routes/detail", getRouteDetailFromUser);
 
 export default router;

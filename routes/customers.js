@@ -5,14 +5,16 @@ import {
   getCustomerById,
   updateCustomer,
   deleteCustomer,
+  getCustomersByRoute,
 } from "../controllers/customers.js";
 
 const router = express.Router();
 
-router.post("/customer", createCustomer);
-router.get("/customer", getAllCustomers);
-router.get("/customer/:id", getCustomerById);
-router.put("/customer/:id", updateCustomer);
-router.delete("/customer/:id", deleteCustomer);
+router.post("/", createCustomer);
+router.get("/", getAllCustomers);
+router.get("/:id", getCustomerById);
+router.put("/:id", updateCustomer);
+router.delete("/:id", deleteCustomer);
+router.get("/route/:id_route", getCustomersByRoute);
 
 export default router;

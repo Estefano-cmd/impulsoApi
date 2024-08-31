@@ -5,14 +5,16 @@ import {
   getSaleById,
   updateSale,
   deleteSale,
+  getSalesByRoute,
 } from "../controllers/sales.js";
 
 const router = express.Router();
 
-router.post("/sale", createSale);
-router.get("/sale", getAllSales);
-router.get("/sale/:id", getSaleById);
-router.patch("/sale/:id", updateSale);
-router.delete("/sale/:id", deleteSale);
+router.post("/", createSale);
+router.get("/", getAllSales);
+router.get("/:id", getSaleById);
+router.patch("/:id", updateSale);
+router.delete("/:id", deleteSale);
+router.get("/:id_route", getSalesByRoute);
 
 export default router;
