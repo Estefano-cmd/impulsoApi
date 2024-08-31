@@ -15,6 +15,6 @@ router.get("/", getAllSales);
 router.get("/:id", getSaleById);
 router.patch("/:id", updateSale);
 router.delete("/:id", deleteSale);
-router.get("/:id_route", getSalesByRoute);
+router.get("/route/:id_route", getSalesByRoute);
 
 export default router;

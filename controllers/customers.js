@@ -50,9 +50,6 @@ import pool from "../config/db.js";
  *           type: number
  *           format: float
  *           description: The longitude coordinate of the customer's location
- *         id_user:
- *           type: integer
- *           description: The ID of the user associated with the customer
  *         province:
  *           type: boolean
  *           description: Indicates if the customer is located in the province
@@ -62,11 +59,10 @@ import pool from "../config/db.js";
  *         razon_social:
  *           type: string
  *           description: The social reason of the customer
- *         uv:
+ *         id_uv:
  *           type: integer
  *           description: The UV of the customer
  *       example:
- *         id: 1
  *         name: Alice
  *         surname: Smith
  *         phone: 123456789
@@ -76,11 +72,10 @@ import pool from "../config/db.js";
  *         address: 123 Main St
  *         coord_lat: 37.7749
  *         coord_lng: -122.4194
- *         id_user: 1
  *         province: true
  *         nit: 12345678
  *         razon_social: Example Corp
- *         uv: 10
+ *         id_uv: 10
  */
 
 /**

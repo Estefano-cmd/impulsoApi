@@ -11,17 +11,16 @@ const createCustomer = async (customerData) => {
     address,
     coord_lat,
     coord_lng,
-    id_user,
     province,
     nit,
     razon_social,
-    uv,
+    id_uv,
   } = customerData;
 
   const result = await pool.query(
     `INSERT INTO customers (name, surname, phone, ci, business_type, photo_url, 
-      address, coord_lat, coord_lng, id_user, province, nit, razon_social, uv) 
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
+      address, coord_lat, coord_lng, province, nit, razon_social, id_uv) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *`,
     [
       name,
       surname,
@@ -32,11 +31,10 @@ const createCustomer = async (customerData) => {
       address,
       coord_lat,
       coord_lng,
-      id_user,
       province,
       nit,
       razon_social,
-      uv,
+      id_uv,
     ]
   );
   return result.rows[0];

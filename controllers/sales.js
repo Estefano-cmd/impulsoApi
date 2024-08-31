@@ -252,7 +252,7 @@ export const deleteSale = async (req, res) => {
 
 /**
  * @swagger
- * /sales/{id_route}:
+ * /sales/route/{id_route}:
  *   get:
  *     summary: Get sales associated with a specific route
  *     tags: [Sales]
@@ -338,6 +338,27 @@ export const deleteSale = async (req, res) => {
  *                       uv:
  *                         type: integer
  *                         description: The UV associated with the customer
+ *                   sale_details:
+ *                     type: array
+ *                     items:
+ *                       type: object
+ *                       properties:
+ *                         id:
+ *                           type: integer
+ *                           description: The ID of the sale detail
+ *                         id_sale:
+ *                           type: integer
+ *                           description: The ID of the sale to which this detail belongs
+ *                         id_product:
+ *                           type: integer
+ *                           description: The ID of the product being sold
+ *                         quantity:
+ *                           type: integer
+ *                           description: The quantity of the product sold
+ *                         price:
+ *                           type: number
+ *                           format: float
+ *                           description: The price of the product in this sale
  *       404:
  *         description: No sales found for this route
  *       500:

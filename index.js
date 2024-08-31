@@ -25,7 +25,7 @@ const port = process.env.PORT || 3000;
 // Register routes
 app.use("/users", usersRoutes);
 app.use("/sales", salesRoutes);
-app.use("/sale-details", saleDetailsRoutes);
+app.use("/sale_details", saleDetailsRoutes);
 app.use("/products", productsRoutes);
 app.use("/customers", customersRoutes);
 app.use("/auth", authRoutes);
