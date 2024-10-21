@@ -178,7 +178,7 @@ export const getCustomerById = async (req, res) => {
 /**
  * @swagger
  * /customers/{id}:
- *   put:
+ *   patch:
  *     summary: Update customer by ID
  *     tags: [Customers]
  *     parameters:
@@ -222,9 +222,6 @@ export const getCustomerById = async (req, res) => {
  *               coord_lng:
  *                 type: number
  *                 example: -122.4194
- *               id_user:
- *                 type: integer
- *                 example: 2
  *               province:
  *                 type: boolean
  *                 example: false
@@ -234,7 +231,7 @@ export const getCustomerById = async (req, res) => {
  *               razon_social:
  *                 type: string
  *                 example: Example LLC
- *               uv:
+ *               id_uv:
  *                 type: integer
  *                 example: 5
  *     responses:

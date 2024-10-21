@@ -63,18 +63,17 @@ const updateCustomer = async (id, customerData) => {
     address,
     coord_lat,
     coord_lng,
-    id_user,
     province,
     nit,
     razon_social,
-    uv,
+    id_uv,
   } = customerData;
 
   const result = await pool.query(
     `UPDATE customers SET name = $1, surname = $2, phone = $3, ci = $4, 
       business_type = $5, photo_url = $6, address = $7, coord_lat = $8, 
-      coord_lng = $9, id_user = $10, province = $11, nit = $12, razon_social = $13, uv = $14 
-      WHERE id = $15 RETURNING *`,
+      coord_lng = $9,  province = $10, nit = $11, razon_social = $12, id_uv = $13 
+      WHERE id = $14 RETURNING *`,
     [
       name,
       surname,
@@ -85,11 +84,10 @@ const updateCustomer = async (id, customerData) => {
       address,
       coord_lat,
       coord_lng,
-      id_user,
       province,
       nit,
       razon_social,
-      uv,
+      id_uv,
       id,
     ]
   );

@@ -13,7 +13,7 @@ const router = express.Router();
 router.post("/", createCustomer);
 router.get("/", getAllCustomers);
 router.get("/:id", getCustomerById);
-router.put("/:id", updateCustomer);
+router.patch("/:id", updateCustomer);
 router.delete("/:id", deleteCustomer);
 router.get("/route/:id_route", getCustomersByRoute);
 
